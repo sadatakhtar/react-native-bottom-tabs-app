@@ -84,7 +84,7 @@ const Login = () => {
 
       <View>
         <Button title='Authenticate' onPress={handleBioAuth}/>
-        <Text>{valueRedux}</Text>
+        <Text style={{fontSize: 40, color: 'red'}}>{valueRedux}</Text>
       </View>
     </View>
   );
