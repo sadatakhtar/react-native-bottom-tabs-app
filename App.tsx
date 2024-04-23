@@ -4,13 +4,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-
 import Home from './bottomTabs/Home';
 import Profile from './bottomTabs/Profile';
 import Settings from './bottomTabs/Settings';
 import Correspondence from './stack/Correspondence';
 import Login from './screens/Login';
 import SelectCustomer from './screens/SelectCustomer';
+import {store} from './src/app/store';
+import {Provider} from 'react-redux';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -37,11 +38,13 @@ function TabNavigator() {
 
 export default function App() {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <NavigationContainer>
-        <RootNavigator />
-      </NavigationContainer>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={{flex: 1}}>
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
+      </SafeAreaView>
+    </Provider>
   );
 }
 

@@ -4,18 +4,15 @@ import {useNavigation} from '@react-navigation/native';
 import * as LocalAuthentication from 'expo-local-authentication';
 //const crypto = require('crypto');
 //import {Crypto} from 'expo-crypto';
+import { useSelector } from 'react-redux';
+import { getValue } from '../src/features/general/generalSlice';
 
 
 const Login = () => {
   const [isBioSupported, setIsBioSupported] = useState(false);
   const navigate = useNavigation();
+  const valueRedux = useSelector(getValue);
 
-  // const sampleKey = crypto.randomBytes(32).toString('base64');
-  // const sampleIv = crypto.randomBytes(16).toString('base64');
-
-  // console.log('key:', sampleKey)
-  // console.log('Iv: ', sampleIv)
-  // Check if hardware supports biometrics
   useEffect(() => {
     (async () => {
       const compatible = await LocalAuthentication.hasHardwareAsync();
@@ -87,6 +84,7 @@ const Login = () => {
 
       <View>
         <Button title='Authenticate' onPress={handleBioAuth}/>
+        <Text>{valueRedux}</Text>
       </View>
     </View>
   );
