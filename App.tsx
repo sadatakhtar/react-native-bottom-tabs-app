@@ -12,6 +12,9 @@ import Login from './screens/Login';
 import SelectCustomer from './screens/SelectCustomer';
 import {store} from './src/app/store';
 import {Provider} from 'react-redux';
+import BiometricsConsent from './screens/BiometricsConsent';
+import Appconfiguration from './components/Appconfiguration';
+import LaunchPad from './screens/LaunchPad';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -41,7 +44,9 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaView style={{flex: 1}}>
         <NavigationContainer>
-          <RootNavigator />
+          <Appconfiguration>
+            <RootNavigator />
+          </Appconfiguration>
         </NavigationContainer>
       </SafeAreaView>
     </Provider>
@@ -50,7 +55,15 @@ export default function App() {
 
 const RootNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Biometrics Consent">
+      <Stack.Screen name="LaunchPad" component={LaunchPad} />
+      <Stack.Screen
+        name="Biometrics Consent"
+        component={BiometricsConsent}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Select Customer" component={SelectCustomer} />
       <Stack.Screen
